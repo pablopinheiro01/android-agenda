@@ -15,7 +15,6 @@ public class AgendaApplication extends Application {
         criaAlunosDeTeste();
     }
 
-
     private void criaAlunosDeTeste() {
         AlunoDAO dao = new AlunoDAO();
         for (int i = 0; i < 2; i++) {

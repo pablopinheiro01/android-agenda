@@ -1,5 +1,7 @@
 package br.com.alura.agenda.ui.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +36,13 @@ public class ListaAlunosActivity extends AppCompatActivity {
         configuraNovoFabAluno();
         configuraLista();
 
+        new AlertDialog
+                .Builder(this)
+                .setTitle("Removendo Aluno")
+                .setMessage("Tem certeza que quer remover o Aluno ?")
+                .setPositiveButton("Sim",null)
+                .setNegativeButton("Não",null)
+                .show();
 
     }
 
