@@ -34,8 +34,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setTitle(TITULO_APPBAR);
         configuraNovoFabAluno();
         configuraLista();
-        dao.salva(new Aluno("alex", "11 98565-8799","teste@email.com"));
-        dao.salva(new Aluno("joao", "11 98598-8799","jao@email.com"));
+
+        for (int i = 0; i < 30; i++) {
+            dao.salva(new Aluno("Alex "+i, "11 98565-87"+i+i+1,"teste@email.com"));
+            dao.salva(new Aluno("João "+i, "11 98598-879"+i,"jao@email.com"));
+        }
 
     }
 
