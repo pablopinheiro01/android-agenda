@@ -50,11 +50,13 @@ public class ListaAlunosActivity extends AppCompatActivity {
     //todos acionam este metodo
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        //este objeto foi criado pela equipe do android para garantir que conseguiremos pegar as informações contidas no menu
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        //recupera o aluno escolhido atravez do adapter e do objeto com mais dados do menu onde eu cliquei
-        Aluno alunoEscolhido = adapter.getItem(menuInfo.position);
-        remove(alunoEscolhido);
+        if(item.getItemId() == R.id.activity_lista_alunos_menu_remover){
+            //este objeto foi criado pela equipe do android para garantir que conseguiremos pegar as informações contidas no menu
+            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            //recupera o aluno escolhido atravez do adapter e do objeto com mais dados do menu onde eu cliquei
+            Aluno alunoEscolhido = adapter.getItem(menuInfo.position);
+            remove(alunoEscolhido);
+        }
 
         return super.onContextItemSelected(item);
     }
