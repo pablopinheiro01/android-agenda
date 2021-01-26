@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/activity_lista_alunos_menu_remover"
-        android:title="Remover"
+        android:title="@string/remover"
         />
-    <item android:title="Teste" />
+    <item android:title="@string/teste" />
 </menu>
