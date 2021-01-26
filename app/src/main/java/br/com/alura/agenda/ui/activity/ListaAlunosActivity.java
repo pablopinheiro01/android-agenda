@@ -2,6 +2,7 @@ package br.com.alura.agenda.ui.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,15 +36,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setTitle(TITULO_APPBAR);
         configuraNovoFabAluno();
         configuraLista();
-
-        new AlertDialog
-                .Builder(this)
-                .setTitle("Removendo Aluno")
-                .setMessage("Tem certeza que quer remover o Aluno ?")
-                .setPositiveButton("Sim",null)
-                .setNegativeButton("Não",null)
-                .show();
-
     }
 
     @Override
@@ -56,16 +48,31 @@ public class ListaAlunosActivity extends AppCompatActivity {
     //qualquer item de menu de contexto que for clicado aciona esse metodo
     //todos acionam este metodo
     @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
+    public boolean onContextItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.activity_lista_alunos_menu_remover) {
-            //este objeto foi criado pela equipe do android para garantir que conseguiremos pegar as informações contidas no menu
-            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-            //recupera o aluno escolhido atravez do adapter e do objeto com mais dados do menu onde eu cliquei
-            Aluno alunoEscolhido = adapter.getItem(menuInfo.position);
-            remove(alunoEscolhido);
+            confirmaRemocao(item);
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    private void confirmaRemocao(final MenuItem item) {
+        new AlertDialog
+                .Builder(this)
+                .setTitle("Removendo Aluno")
+                .setMessage("Tem certeza que quer remover o Aluno ?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //este objeto foi criado pela equipe do android para garantir que conseguiremos pegar as informações contidas no menu
+                        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                        //recupera o aluno escolhido atravez do adapter e do objeto com mais dados do menu onde eu cliquei
+                        Aluno alunoEscolhido = adapter.getItem(menuInfo.position);
+                        remove(alunoEscolhido);
+                    }
+                })
+                .setNegativeButton("Não",null)
+                .show();
     }
 
     private void configuraNovoFabAluno() {
