@@ -12,12 +12,11 @@ import java.util.List;
 
 import br.com.alura.agenda.R;
 import br.com.alura.agenda.model.Aluno;
-import br.com.alura.agenda.ui.activity.ListaAlunosActivity;
 
 public class ListaAlunosAdapter extends BaseAdapter {
 
     private final List<Aluno> alunos = new ArrayList<>();
-    private Context context;
+    private final Context context;
 
     public ListaAlunosAdapter(Context context){
         this.context = context;
@@ -46,33 +45,41 @@ public class ListaAlunosAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //cria a view com a base no layout
-        View viewCriada = LayoutInflater.from(context)
-                .inflate(R.layout.item_aluno, parent
-                        //indico que o inflate nao realizara o comportamento padrao
-                        , false);
+        View viewCriada = criaView(parent);
 
         Aluno alunoDevolvido = alunos.get(position);
 
+        vincula(viewCriada, alunoDevolvido);
+
+        return viewCriada;
+    }
+
+    private void vincula(View viewCriada, Aluno alunoDevolvido) {
         TextView nome = viewCriada.findViewById(R.id.item_aluno_nome);
         nome.setText(alunoDevolvido.getNome());
 
         TextView telefone = viewCriada.findViewById(R.id.item_aluno_email);
         telefone.setText(alunoDevolvido.getTelefone());
-
-        return viewCriada;
     }
 
-    public void clear() {
+    private View criaView(ViewGroup parent) {
+        //cria a view com a base no layout
+        return LayoutInflater.from(context)
+                .inflate(R.layout.item_aluno, parent
+                        //indico que o inflate nao realizara o comportamento padrao
+                        , false);
+    }
+
+    public void remove(Aluno aluno) {
         //limpeza do dataset
-        alunos.clear();
+        alunos.remove(aluno);
+        notifyDataSetChanged(); // notifica o adapter
     }
 
-    public void addAll(List<Aluno> todos) {
-        this.alunos.addAll(todos);
+    public void atualiza(List<Aluno> alunos){
+        this.alunos.clear();
+        this.alunos.addAll(alunos);
+        notifyDataSetChanged();
     }
 
-    public void remove(Aluno alunoEscolhido) {
-        this.alunos.remove(alunoEscolhido);
-    }
 }
