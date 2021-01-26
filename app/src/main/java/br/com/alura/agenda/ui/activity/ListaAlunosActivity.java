@@ -42,10 +42,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add("Remover");
+        //inflo o menu e associo ao meu menu de contexto
+        getMenuInflater().inflate(R.menu.activity_lista_alunos_menu, menu);
     }
 
     //qualquer item de menu de contexto que for clicado aciona esse metodo
+    //todos acionam este metodo
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         //este objeto foi criado pela equipe do android para garantir que conseguiremos pegar as informações contidas no menu
