@@ -1,16 +1,21 @@
 package br.com.alura.agenda.ui.activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -18,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.com.alura.agenda.R;
 import br.com.alura.agenda.dao.AlunoDAO;
 import br.com.alura.agenda.model.Aluno;
+import br.com.alura.agenda.ui.adapter.ListaAlunosAdapter;
 
 import static br.com.alura.agenda.ui.activity.ConstantesActivitys.CHAVE_ALUNO;
 
@@ -25,7 +31,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private String TITULO_APPBAR = "Lista de Alunos";
     private AlunoDAO dao = new AlunoDAO();
-    private ArrayAdapter<Aluno> adapter;
+    private ListaAlunosAdapter adapter = new ListaAlunosAdapter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +42,9 @@ public class ListaAlunosActivity extends AppCompatActivity {
         configuraLista();
 
         for (int i = 0; i < 30; i++) {
-            dao.salva(new Aluno("Alex "+i, "11 98565-87"+i+i+1,"teste@email.com"));
-            dao.salva(new Aluno("João "+i, "11 98598-879"+i,"jao@email.com"));
+            dao.salva(new Aluno("Alex " + i, "11 98565-87" + i + i + 1, "teste@email.com"));
+            dao.salva(new Aluno("João " + i, "11 98598-879" + i, "jao@email.com"));
         }
-
     }
 
     @Override
@@ -53,7 +58,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     //todos acionam este metodo
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.activity_lista_alunos_menu_remover){
+        if (item.getItemId() == R.id.activity_lista_alunos_menu_remover) {
             //este objeto foi criado pela equipe do android para garantir que conseguiremos pegar as informações contidas no menu
             AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
             //recupera o aluno escolhido atravez do adapter e do objeto com mais dados do menu onde eu cliquei
@@ -65,7 +70,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void configuraNovoFabAluno() {
-        FloatingActionButton botaoNovoAluno =findViewById(R.id.activity_lista_alunos_fab_novo_aluno);
+        FloatingActionButton botaoNovoAluno = findViewById(R.id.activity_lista_alunos_fab_novo_aluno);
         botaoNovoAluno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,9 +144,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void configuraAdaptaer(ListView listaDeAlunos) {
-        adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1);
+
         listaDeAlunos.setAdapter(adapter);
     }
 }
