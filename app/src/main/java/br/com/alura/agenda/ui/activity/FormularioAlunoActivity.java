@@ -20,7 +20,6 @@ import static br.com.alura.agenda.ui.activity.ConstantesActivitys.TITULO_APPBAR_
 public class FormularioAlunoActivity extends AppCompatActivity {
 
     private EditText campoNome;
-    private EditText campoSobrenome;
     private EditText campoTelefone;
     private EditText campoEmail;
     private AlunoDAO dao;
@@ -82,7 +81,6 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     private void preencheAluno() {
         String nome = campoNome.getText().toString();
-        String sobrenome = campoSobrenome.getText().toString();
         String telefone= campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
 
