@@ -15,6 +15,9 @@ public class Aluno implements Serializable {
     private String nome;
     private String telefone;
     private String email;
+    private String sobrenome;
+
+
 
     @Ignore
     public Aluno(String nome, String telefone, String email) {
@@ -23,10 +26,24 @@ public class Aluno implements Serializable {
         this.email = email;
     }
 
+    public Aluno(String nome, String telefone, String email,String sobrenome) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.sobrenome = sobrenome;
+    }
+
     public Aluno() {
 
     }
 
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
     public String getNome() {
         return nome;
     }

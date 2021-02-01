@@ -3,7 +3,6 @@
     package="br.com.alura.agenda">
 
     <application
-        android:name=".ui.AgendaApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

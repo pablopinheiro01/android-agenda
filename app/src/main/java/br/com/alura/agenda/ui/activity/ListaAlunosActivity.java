@@ -1,8 +1,5 @@
 package br.com.alura.agenda.ui.activity;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,12 +11,9 @@ import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.alura.agenda.R;
-import br.com.alura.agenda.dao.AlunoDAO;
 import br.com.alura.agenda.model.Aluno;
-import br.com.alura.agenda.ui.adapter.ListaAlunosAdapter;
 import br.com.alura.agenda.ui.view.ListaAlunosView;
 
 import static br.com.alura.agenda.ui.activity.ConstantesActivitys.CHAVE_ALUNO;

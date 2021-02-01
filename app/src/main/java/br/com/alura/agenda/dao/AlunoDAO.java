@@ -1,52 +1,26 @@
 package br.com.alura.agenda.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
 import br.com.alura.agenda.model.Aluno;
 
-public class AlunoDAO {
+@Dao
+public interface AlunoDAO {
 
-    private final static List<Aluno> alunos = new ArrayList<>();
-    private int contadorIds = 1;
+    @Insert
+    void salva(Aluno aluno);
 
-    public void salva(Aluno aluno) {
-        atualizaIds(aluno);
-        aluno.setId(contadorIds);
-        alunos.add(aluno);
-    }
+    @Query("SELECT * FROM aluno")
+    List<Aluno> todos();
 
-    private void atualizaIds(Aluno aluno) {
-        contadorIds++;
-    }
+    @Delete
+    void remove(Aluno aluno);
 
-    public List<Aluno> todos() {
-        return new ArrayList<>(alunos);
-    }
-
-    public void edita(Aluno aluno){
-        Aluno alunoEncontrado = buscaAlunoPeloId(aluno);
-        if(alunoEncontrado != null){
-            int posicaoAluno = alunos.indexOf(alunoEncontrado);
-            alunos.set(posicaoAluno, aluno);
-        }
-
-    }
-
-    private Aluno buscaAlunoPeloId(Aluno aluno) {
-        Aluno alunoEncontrado = null;
-        for (Aluno a: alunos) {
-            if (a.getId() == aluno.getId()) {
-                alunoEncontrado = a;
-            }
-        }
-        return alunoEncontrado;
-    }
-
-    public void remove(Aluno aluno) {
-        Aluno alunoDevolvido = buscaAlunoPeloId(aluno);
-        if(alunoDevolvido != null){
-            alunos.remove(alunoDevolvido);
-        }
-    }
+    @Update
+    void edita(Aluno aluno);
 }
