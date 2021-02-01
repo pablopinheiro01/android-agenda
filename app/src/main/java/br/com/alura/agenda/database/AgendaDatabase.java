@@ -22,12 +22,20 @@ public abstract class AgendaDatabase extends RoomDatabase {
     public static AgendaDatabase getInstance(Context context){
       return Room.databaseBuilder(context, AgendaDatabase.class, NOME_BASE_DADOS)
                 .allowMainThreadQueries()
-              .addMigrations(new Migration(1, 2) {
-                  @Override
-                  public void migrate(@NonNull SupportSQLiteDatabase database) {
-                      database.execSQL("ALTER TABLE aluno ADD COLUMN sobrenome TEXT");
-                  }
-              })
+              .addMigrations(
+                      new Migration(1, 2) {
+                                 @Override
+                                 public void migrate(@NonNull SupportSQLiteDatabase database) {
+                                     database.execSQL("ALTER TABLE aluno ADD COLUMN sobrenome TEXT");
+                                 }
+                             },
+                      //mesmo sendo o caso de um retorno, qualquer alteracao na base de dados sempre sera progressiva
+                      new Migration(2,3) { //voltando o aluno para remocao do sobre nome
+                          @Override
+                          public void migrate(@NonNull SupportSQLiteDatabase database) {
+
+                          }
+                      })
                 //.fallbackToDestructiveMigration() //nao pode utilizar isso em producao somente em ambiente de testes devido a destruicao que e realizada no app.
                 .build();
     }

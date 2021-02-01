@@ -63,7 +63,6 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     private void preencheCampos() {
         campoNome.setText(aluno.getNome());
-        campoSobrenome.setText(aluno.getSobrenome());
         campoEmail.setText(aluno.getEmail());
         campoTelefone.setText(aluno.getTelefone());
     }
@@ -88,14 +87,12 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         String email = campoEmail.getText().toString();
 
         aluno.setNome(nome);
-        aluno.setSobrenome(sobrenome);
         aluno.setEmail(email);
         aluno.setTelefone(telefone);
     }
 
     private void inicializacaoDosCampos() {
         campoNome = findViewById(R.id.activity_formulario_aluno_nome);
-        campoSobrenome = findViewById(R.id.activity_formulario_aluno_sobrenome);
         campoTelefone = findViewById(R.id.activity_formulario_aluno_telefone);
         campoEmail = findViewById(R.id.activity_formulario_aluno_email);
     }
