@@ -30,7 +30,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
-        dao = AgendaDatabase.getInstance(this).getRoomAlunoDAO();
+        dao = AgendaDatabase.getInstance(this).getAlunoDAO();
         inicializacaoDosCampos();
         carregaAluno();
     }

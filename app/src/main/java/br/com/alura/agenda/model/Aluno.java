@@ -17,10 +17,7 @@ public class Aluno implements Serializable {
     private String nome;
     private String email;
     private Calendar momentoDeCadastro = Calendar.getInstance();
-
-
-    private List<Telefone> telefones;
-
+    
     public String getNome() {
         return nome;
     }
@@ -71,11 +68,5 @@ public class Aluno implements Serializable {
         return formatador.format(momentoDeCadastro.getTime());
     }
 
-    public List<Telefone> getTelefones() {
-        return telefones;
-    }
 
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
-    }
 }
