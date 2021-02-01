@@ -60,7 +60,7 @@ public class ListaAlunosAdapter extends BaseAdapter {
 
 
         TextView telefone = viewCriada.findViewById(R.id.item_aluno_email);
-        telefone.setText(alunoDevolvido.getTelefoneFixo());
+//        telefone.setText(alunoDevolvido.getTelefoneFixo());
     }
 
     private View criaView(ViewGroup parent) {
