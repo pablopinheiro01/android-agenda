@@ -12,6 +12,12 @@ public interface TelefoneDAO {
                 "ON t.alunoId = a.id " +
                 "WHERE t.alunoId = :alunoId " +
                 "LIMIT 1")
+        Telefone buscaPrimeiroTelefoneDoAlunoComJoin( int alunoId );
+
+        @Query("SELECT * FROM Telefone " +
+                " WHERE alunoId = :alunoId " +
+                " LIMIT 1 ")
         Telefone buscaPrimeiroTelefoneDoAluno( int alunoId );
+
 
 }

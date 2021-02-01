@@ -20,8 +20,10 @@ public class ListaAlunosAdapter extends BaseAdapter {
 
     private final List<Aluno> alunos = new ArrayList<>();
     private final Context context;
+    private final TelefoneDAO dao;
 
     public ListaAlunosAdapter(Context context){
+        this.dao = AgendaDatabase.getInstance(context).getTelefoneDAO();
         this.context = context;
     }
 
@@ -62,7 +64,7 @@ public class ListaAlunosAdapter extends BaseAdapter {
         nome.setText(alunoDevolvido.getNomeCompleto() + " "+ alunoDevolvido.dataFormatada());
 
         TextView telefone = viewCriada.findViewById(R.id.item_aluno_email);
-        TelefoneDAO dao = AgendaDatabase.getInstance(context).getTelefoneDAO();
+
         Telefone primeiroTelefone = dao.buscaPrimeiroTelefoneDoAluno(alunoDevolvido.getId());
         telefone.setText(primeiroTelefone.getNumero());
     }
