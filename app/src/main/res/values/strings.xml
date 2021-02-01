@@ -9,11 +9,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="telefone">Telefone</string>
+    <string name="telefone_fixo">Telefone fixo</string>
     <string name="e_mail">E-mail</string>
     <string name="nome">Nome</string>
     <string name="salvar_aluno">Salvar Aluno</string>
     <string name="remover">Remover</string>
     <string name="teste">Teste</string>
     <string name="sobrenome">Sobrenome</string>
+    <string name="telefone_celular">Telefone celular</string>
 </resources>
