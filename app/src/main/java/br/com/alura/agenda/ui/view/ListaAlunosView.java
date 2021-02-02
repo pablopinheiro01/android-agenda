@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import br.com.alura.agenda.asynktask.BuscaAlunoTask;
+import br.com.alura.agenda.asynktask.RemoveAlunoTask;
 import br.com.alura.agenda.dao.AlunoDAO;
 import br.com.alura.agenda.database.AgendaDatabase;
 import br.com.alura.agenda.model.Aluno;
@@ -48,9 +49,7 @@ public class ListaAlunosView {
 
 
     public void remove(Aluno alunoEscolhido) {
-        dao.remove(alunoEscolhido);
-        //chamando somente o adapter para remocao
-        adapter.remove(alunoEscolhido);
+        new RemoveAlunoTask(dao, adapter, alunoEscolhido).execute();
     }
 
 

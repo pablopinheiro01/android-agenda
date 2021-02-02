@@ -23,7 +23,7 @@ public class BuscaAlunoTask extends AsyncTask<Void, Void,List<Aluno>> {
     protected List<Aluno> doInBackground(Void... voids) {
         List<Aluno> todosAlunos = dao.todos();
         try {
-            Thread.sleep(10000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
