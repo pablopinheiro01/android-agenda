@@ -27,7 +27,7 @@ public abstract class AgendaDatabase extends RoomDatabase {
 
     public static AgendaDatabase getInstance(Context context){
       return Room.databaseBuilder(context, AgendaDatabase.class, NOME_BASE_DADOS)
-              .allowMainThreadQueries()
+              //.allowMainThreadQueries() //ta opcao utiliza a thread principal e pode causar travamento da tela
               .addMigrations(TODAS_MIGRATIONS)
                 //.fallbackToDestructiveMigration() //nao pode utilizar isso em producao somente em ambiente de testes devido a destruicao que e realizada no app.
                 .build();

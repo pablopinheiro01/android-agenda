@@ -25,11 +25,6 @@ public class Telefone implements Serializable {
 
     private TipoTelefone tipo;
 
-    public Telefone(String numero, TipoTelefone tipo, Long id) {
-        this.id = id;
-        this.numero = numero;
-        this.tipo = tipo;
-    }
 
     public Telefone(String numero, TipoTelefone tipo) {
         this.numero = numero;

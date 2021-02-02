@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import br.com.alura.agenda.asynktask.BuscaAlunoTask;
 import br.com.alura.agenda.dao.AlunoDAO;
 import br.com.alura.agenda.database.AgendaDatabase;
 import br.com.alura.agenda.model.Aluno;
@@ -42,8 +43,7 @@ public class ListaAlunosView {
 
 
     public void atualizaAlunos() {
-        //reconfigura o adapter no onResume
-        adapter.atualiza(dao.todos());
+        new BuscaAlunoTask(dao, adapter).execute();
     }
 
 
