@@ -15,6 +15,7 @@ import br.com.alura.agenda.asynktask.BuscaPrimeiroTelefoneDoAlunoTask;
 import br.com.alura.agenda.dao.TelefoneDAO;
 import br.com.alura.agenda.database.AgendaDatabase;
 import br.com.alura.agenda.model.Aluno;
+import br.com.alura.agenda.model.Telefone;
 
 public class ListaAlunosAdapter extends BaseAdapter {
 
@@ -65,13 +66,14 @@ public class ListaAlunosAdapter extends BaseAdapter {
 
         TextView telefone = viewCriada.findViewById(R.id.item_aluno_telefone);
 
-        new BuscaPrimeiroTelefoneDoAlunoTask(dao, telefone, alunoDevolvido.getId(), new BuscaPrimeiroTelefoneDoAlunoTask.PrimeiroTelefoneEncontradoListener() {
+        new BuscaPrimeiroTelefoneDoAlunoTask(dao,
+                alunoDevolvido.getId(), new BuscaPrimeiroTelefoneDoAlunoTask.PrimeiroTelefoneEncontradoListener() {
             @Override
-            public void quandoEncontrado() {
-                telefone.setText("1");
+            public void quandoEncontrado(Telefone telefoneEncontrado) {
+                telefone.setText(telefoneEncontrado.getNumero());
             }
-        });
-
+        }
+    ).execute();
 
     }
 
